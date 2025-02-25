@@ -2,8 +2,4 @@ node_modules
 logs
 dist
 migrations
-.env
-package.json
-tsconfig.json
-yarn.lock
 LICENSE
