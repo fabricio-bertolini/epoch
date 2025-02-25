@@ -12,7 +12,7 @@ export class FiscalController {
     if (!fiscal) {
       throw new NotFoundError('Fiscal não encontrado');
     }
-    return res.json(fiscal).status(200);
+    return res.status(200).json(fiscal);
   }
 
   async getFiscalByCpf(req: Request, res: Response) {
@@ -22,12 +22,12 @@ export class FiscalController {
     if (!fiscal) {
       throw new NotFoundError('Fiscal não encontrado');
     }
-    return res.json(fiscal).status(200);
+    return res.status(200).json(fiscal);
   }
 
   async listFiscal(req: Request, res: Response) {
     const fiscals = await fiscalRepository.find();
-    return res.json(fiscals).status(200);
+    return res.status(200).json(fiscals);
   }
 
   async createFiscal(req: Request, res: Response) {

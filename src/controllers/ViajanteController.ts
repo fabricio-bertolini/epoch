@@ -11,7 +11,7 @@ export class ViajanteController {
     if (!viajante) {
       throw new NotFoundError('Viajante não encontrado');
     }
-    return res.json(viajante).status(200);
+    return res.status(200).json(viajante);
   }
 
   async getViajanteByNumeroDePassaporte(req: Request, res: Response) {
@@ -21,12 +21,12 @@ export class ViajanteController {
     if (!viajante) {
       throw new NotFoundError('Viajante não encontrado');
     }
-    return res.json(viajante).status(200);
+    return res.status(200).json(viajante);
   }
 
   async listViajante(req: Request, res: Response) {
     const viajantes = await viajanteRepository.find();
-    return res.json(viajantes).status(200);
+    return res.status(200).json(viajantes);
   }
 
   async createViajante(req: Request, res: Response) {

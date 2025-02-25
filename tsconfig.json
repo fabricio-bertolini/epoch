@@ -15,12 +15,13 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
-    "typeRoots": ["./src/@types"]
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "types": ["jest"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "ts-node": 
-{
+  {
     "files": true
   }
 }
