@@ -23,24 +23,24 @@ Este é um projeto de uma aplicação de gerenciamento de viagens temporais cons
 - **Winston**: Biblioteca de logging.
 - **Jest**: Framework de testes para JavaScript.
 
-## Instalação
+# Instalação
 
 1. Clone o repositório:
 
-   ```sh
+```sh
    git clone https://github//com/fabricio-bertolini/epoch//git
    cd CentralDeViagens
-    ```
+ ```
 
 2. Instale as dependências:
-  ```sh
+```sh
     yarn
-  ```
+```
 
 4. Configure as variáveis de ambiente:
-Crie um arquivo //env na raiz do projeto e adicione suas variáveis de ambiente// 
+Crie um arquivo .env na raiz do projeto e adicione suas variáveis de ambiente.
 Exemplo:
-  ```sh
+```sh
     DB_HOST=localhost   # Database host  
     DB_PORT=5432        # Database port
     DB_USER=postgres    # Username
@@ -50,23 +50,23 @@ Exemplo:
     PORT=3000           # Server port
     
     JWT_SECRET=f3fec87749742253dd1743cec1872da4671f655a   # JWT secret key  
-  ```
+```
 5. Execute as migrações do banco de dados:
-   ```sh
+```sh
    yarn migration:generate
    yarn migration:run
-   ```
-## Scripts Disponíveis:
+```
+# Scripts Disponíveis:
 
-- **yarn dev** > Inicia a aplicação em modo de desenvolvimento usando nodemon e ts-node//
-- **yarn build** > Compila o projeto TypeScript para JavaScript//
-- **yarn test** > Executa os testes usando Jest//
-- **yarn migration:generate** > Gera uma nova migração com base nas mudanças nas entidades//
-- **yarn migration:run** > Executa as migrações pendentes no banco de dados//
-- **yarn migration:revert** > Reverte a última migração executada//
+- **yarn dev** > Inicia a aplicação em modo de desenvolvimento usando nodemon e ts-node.
+- **yarn build** > Compila o projeto TypeScript para JavaScript.
+- **yarn test** > Executa os testes usando Jest.
+- **yarn migration:generate** > Gera uma nova migração com base nas mudanças nas entidades.
+- **yarn migration:run** > Executa as migrações pendentes no banco de dados.
+- **yarn migration:revert** > Reverte a última migração executada.
 
-## Estrutura do Projeto:
-  ```bash
+# Estrutura do Projeto:
+```bash
 CentralDeViagens/
 ├── src/
 │   ├── controllers/
@@ -103,10 +103,61 @@ CentralDeViagens/
 ├── package.json
 ├── tsconfig.json
 └── README.md
-  ```
+```
+# Entidades e Relacionamentos
 
-## Rotas
-  ```sh
+## Viajante
+
+- `id` (PK)
+- `nome`
+- `dataNascimento`
+- `numeroPassaporte`
+
+**Relacionamentos:**
+- Um Viajante tem muitas Infrações
+- Um Viajante tem muitas Viagens
+
+## Viagem
+
+- `id` (PK)
+- `descricao`
+- `dataDestino`
+- `dataDaViagem`
+- `viajante_id` (FK)
+- `infracao_id` (FK)
+
+**Relacionamentos:**
+- Muitas Viagens pertencem a um Viajante
+- Uma Viagem pode ter uma Infração
+
+## Infração
+
+- `id` (PK)
+- `descricao`
+- `data`
+- `gravidade`
+- `viajante_id` (FK)
+- `fiscal_id` (FK)
+- `viagem_id` (FK)
+
+**Relacionamentos:**
+- Muitas Infrações pertencem a um Viajante
+- Muitas Infrações pertencem a um Fiscal
+- Uma Infração pode estar associada a uma Viagem
+
+## Fiscal
+
+- `id` (PK)
+- `nome`
+- `cpf`
+- `usuario`
+- `senha`
+
+**Relacionamentos:**
+- Um Fiscal tem muitas Infrações
+
+# Rotas
+```sh
 # API Rotas e Funções
 
 ## Login
@@ -149,19 +200,18 @@ CentralDeViagens/
 |-----------|------------|
 | `/viajante/:viajanteId/viagem` | `.listViagem` |
 | `/viajante/:viajanteId/viagem/:viagemId` | `.getViagem` |
-| `/viajante/:viajanteId/viagem` | `.createViagem` |
+| `/viajante/:viajanteId/:infracaoId/viagem` | `.createViagem` |
 | `/viajante/:viajanteId/viagem/:viagemId` | `.updateViagem` |
 | `/viajante/:viajanteId/viagem/:viagemId` | `.deleteViagem` |
-
 ```
 
-## Testes
+# Testes
 Os testes são escritos usando Jest. Para executar os testes use o comando:
-  ```sh
+```sh
   yarn test
-  ```
+```
 
-## Licença
+# Licença
 Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 **obs.: sim o nome do repositório foi inspirado na nave de Chrono Trigger que faz viagens no tempo.**
