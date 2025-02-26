@@ -1,6 +1,6 @@
 # Central de Viagens
 
-Este é um projeto de uma aplicação de gerenciamento de viagens temporais construída com Node.js, Express, TypeScript e TypeORM. A aplicação permite gerenciar viajantes viagens e infrações com autenticação JWT e registro de logs usando Winston e Morgan.
+Este é desafio de uma semana de duração para criar um projeto de uma aplicação de gerenciamento de viagens temporais construída com Node.js, Express, TypeScript e TypeORM. A aplicação permite gerenciar viajantes viagens e infrações com autenticação JWT e registro de logs usando Winston e Morgan.
 
 ## Considerações:
 - Eu fiquei entre devolver a entidade por completo das entidades relacionais, ou somente os ids para fins de operações. Acabei decidindo passar a entidade por completo nas funções de criação.
