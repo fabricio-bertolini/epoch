@@ -25,6 +25,6 @@ export class Viagem
 
   @OneToOne(() => Infracao, infracao => infracao.viagem, { nullable: true })
   @JoinColumn({ name: 'infracao_id' })
-  infracao: Infracao;
+  infracao: Infracao | null;
 
 }

@@ -50,7 +50,7 @@ routes.delete('/viajante/:viajanteId/infracao/:infracaoId', new InfracaoControll
 //Viagem
 routes.get('/viajante/:viajanteId/viagem', new ViagemController().listViagem);
 routes.get('/viajante/:viajanteId/viagem/:viagemId', new ViagemController().getViagem);
-routes.post('/viajante/:viajanteId/viagem', new ViagemController().createViagem);
+routes.post('/viajante/:viajanteId/:infracaoId/viagem', new ViagemController().createViagem);
 routes.put('/viajante/:viajanteId/viagem/:viagemId', new ViagemController().updateViagem);
 routes.delete('/viajante/:viajanteId/viagem/:viagemId', new ViagemController().deleteViagem);
 

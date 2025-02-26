@@ -23,9 +23,10 @@ export class ViagemController {
   }
 
   async createViagem(req: Request, res: Response) {
-    const { viajanteId } = req.params;
+    const { viajanteId, infracaoId } = req.params;
     const { descricao, dataDestino } = req.body;
     const viajante = await viajanteRepository.findOneBy({ id: Number(viajanteId) });
+    const infracao = await infracaoRepository.findOne({ where: { id: Number(infracaoId), viajante: { id: Number(viajanteId) } } });
     const infracoes = await infracaoRepository.find({ where: { viajante: { id: Number(viajanteId) } } });
 
     if (!viajante) {
@@ -58,7 +59,8 @@ export class ViagemController {
       descricao,
       dataDestino: parsedDataDestino,
       dataDaViagem: new Date(),
-      viajante
+      viajante,
+      infracao: infracao || null
     });
     await viagemRepository.save(viagem);
     return res.status(201).json(viagem);
